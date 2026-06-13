@@ -41,13 +41,16 @@
     text-transform: uppercase;
   }
   #output {
+    font-family: monospace;
     font-size: 22px;
     font-weight: bold;
     padding: 2px 0;
     border-bottom: 2px solid #000;
-    min-width: 280px;
+    min-width: 0;
+    width: auto;
     color: #000;
     white-space: nowrap;
+    letter-spacing: -0.04em;
   }
   #output.empty { color: #ccc; }
 </style>
@@ -56,11 +59,11 @@
 <div class="row">
   <div class="col">
     <label>Ticker</label>
-    <input id="ticker" maxlength="5" placeholder="NVDA" autocomplete="off" spellcheck="false">
+    <input id="ticker" maxlength="5" placeholder="MS" autocomplete="off" spellcheck="false">
   </div>
   <div class="col">
     <label>Phonetic</label>
-    <div id="output" class="empty">—</div>
+    <div id="output" class="empty">Mike·Sierra</div>
   </div>
 </div>
 <script>
@@ -70,8 +73,8 @@
   inp.addEventListener('input', () => {
     const v = inp.value.toUpperCase().replace(/[^A-Z]/g,'');
     inp.value = v;
-    if (!v) { out.textContent = '—'; out.className = 'empty'; return; }
-    out.textContent = [...v].map(l => N[l]||l).join(' · ');
+    if (!v) { out.textContent = 'Mike·Sierra'; out.className = 'empty'; return; }
+    out.textContent = [...v].map(l => N[l]||l).join('·');
     out.className = '';
   });
   inp.focus();
